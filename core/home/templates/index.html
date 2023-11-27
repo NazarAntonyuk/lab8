@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index </title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f3f3f3; /* Changed background color */
+        }
+        .student-info {
+            font-style: italic;
+            color: #000000;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .student-info h1, h2{
+            color: black;
+        }
+        .table-header {
+            cursor: pointer;
+            background-color: #B8860B;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #AFEEEE;
+            text-align: left;
+        }
+        th {
+            background-color: #B8860B;
+            color: white;
+        }
+        tr:hover {
+            background-color: #AFEEEE;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="student-info">
+        <h1>Лабораторна робота 8</h1>
+        <h2>Створення застосунка Django </h2>
+        <h2>Антонюк Назар Романович</h2> <!-- Updated name -->
+        <p>Група: <span style="color: #000000; font-style: italic;">КН20001</span></p>
+    </div>
+
+     <h1 class="table-header" onclick="toggleTable('studentsTable')">Студенти</h1>
+    <table id="studentsTable" class="hidden">
+        <tr>
+            <th>Student Code</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Patronymic</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Course</th>
+            <th>Faculty</th>
+            <th>Group</th>
+            <th>Is Headman</th>
+        </tr>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.Student_Code }}</td>
+                <td>{{ student.Last_Name }}</td>
+                <td>{{ student.First_Name }}</td>
+                <td>{{ student.Patronymic }}</td>
+                <td>{{ student.Address }}</td>
+                <td>{{ student.Phone_Number }}</td>
+                <td>{{ student.Course }}</td>
+                <td>{{ student.Faculty }}</td>
+                <td>{{ student.Group }}</td>
+                <td>{{ student.Is_Headman }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h1 class="table-header" onclick="toggleTable('subjectsTable')">Предмети</h1>
+    <table id="subjectsTable" class="hidden">
+        <tr>
+            <th>Subject Code</th>
+            <th>Name</th>
+            <th>Hours Per Semester</th>
+            <th>Number of Semesters</th>
+        </tr>
+        {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.Subject_Code }}</td>
+                <td>{{ subject.Name }}</td>
+                <td>{{ subject.Hours_Per_Semester }}</td>
+                <td>{{ subject.Number_of_Semesters }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h1 class="table-header" onclick="toggleTable('examsTable')">Екзамени</h1>
+    <table id="examsTable" class="hidden">
+        <tr>
+            <th>Exam Code</th>
+            <th>Exam Date</th>
+            <th>Student Code</th>
+            <th>Subject Code</th>
+            <th>Obtained Grade</th>
+        </tr>
+        {% for exam in exams %}
+            <tr>
+                <td>{{ exam.Exam_Code }}</td>
+                <td>{{ exam.Exam_Date }}</td>
+                <td>{{ exam.Student_Code.Student_Code }}</td>
+                <td>{{ exam.Subject_Code.Subject_Code }}</td>
+                <td>{{ exam.Obtained_Grade }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function toggleTable(tableId) {
+            var table = document.getElementById(tableId);
+            table.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
+
